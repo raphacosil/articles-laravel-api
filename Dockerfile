@@ -14,4 +14,4 @@ RUN apt-get update && apt-get install -y \
 RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs
 
-COPY php/local.ini /usr/local/etc/php/conf.d/local.ini
+COPY docker/php/local.ini /usr/local/etc/php/conf.d/local.ini

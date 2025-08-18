@@ -9,7 +9,7 @@ services:
     networks:
       - laravel
     depends_on:
-      - mysql
+      - postgres
     build:
       context: laravel-docker
       dockerfile: Dockerfile
@@ -27,19 +27,19 @@ services:
     depends_on:
       - app
 
-  mysql:
-    image: mysql:8.0
-    container_name: laravel_mysql
+  postgres:
+    image: postgres:15
+    container_name: laravel_postgres
     restart: always
     environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: laravel
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: root
+      POSTGRES_DB: laravel
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: secret
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - db_data:/var/lib/mysql
+      - pg_data:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
     networks:
       - laravel
 
@@ -56,4 +56,4 @@ networks:
   laravel:
 
 volumes:
-  db_data:
+  pg_data:
