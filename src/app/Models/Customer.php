@@ -32,4 +32,9 @@ class Customer extends Authenticatable
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'sender_id', 'customer_id');
+    }
 }

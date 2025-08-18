@@ -25,4 +25,9 @@ class Article extends Model
     {
         return $this->belongsTo(Customer::class, 'sender_id', 'customer_id');
     }
+
+    public function key_words()
+    {
+        return $this->hasMany(KeyWord::class, 'sender_id', 'customer_id');
+    }
 }
