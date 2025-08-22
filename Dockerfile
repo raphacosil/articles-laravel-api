@@ -15,3 +15,5 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get install -y nodejs
 
 COPY docker/php/local.ini /usr/local/etc/php/conf.d/local.ini
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
