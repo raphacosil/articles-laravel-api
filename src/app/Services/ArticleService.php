@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use App\Models\Article;
+use App\Repositories\ArticleRepository;
 use http\Exception\InvalidArgumentException;
 
 class ArticleService
 {
-    protected $articleRepository;
+    protected ArticleRepository $articleRepository;
 
     public function __construct(ArticleRepository $repository)
     {
@@ -40,5 +41,24 @@ class ArticleService
     public function delete($id)
     {
         return $this->articleRepository->delete($id);
+    }
+
+    public function getByAuthorId($authorId)
+    {
+        return $this->articleRepository->getByAuthorId($authorId);
+    }
+
+    public function getByTitleContaining($title){
+        return $this->articleRepository->getByTitleContaining($title);
+    }
+
+    public function getByContentContaining($content)
+    {
+        return $this->articleRepository->getByContentContaining($content);
+    }
+
+    public function getByKeywords($keywords)
+    {
+        return $this->articleRepository->getByKeywords($keywords);
     }
 }

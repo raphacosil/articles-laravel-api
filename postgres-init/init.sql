@@ -10,7 +10,7 @@ CREATE TABLE customer (
 );
 
 CREATE TABLE article (
-    article_id SERIAL PRIMARY KEY,
+    author_id SERIAL PRIMARY KEY,
     sender_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
@@ -39,12 +39,12 @@ CREATE TABLE attachment (
 CREATE TABLE comment (
     comment_id SERIAL PRIMARY KEY,
     article_id INT NOT NULL,
-    customer_id INT NOT NULL,
+    author_id INT NOT NULL,
     content VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP,
     FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE,
-    FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE
+    FOREIGN KEY (author_id) REFERENCES customer(customer_id) ON DELETE CASCADE
 );
 
 INSERT INTO customer (name, email, password, role, study_area, created_at, updated_at)
@@ -58,7 +58,7 @@ VALUES
     ('Grace Lee', 'grace.lee@example.com', 'password104', 'Writer', 'DevOps', '2025-02-07', '2025-02-07'),
     ('Helen Black', 'helen.black@example.com', 'password105', 'Revisor', 'AI', '2025-02-08', '2025-02-08');
 
-INSERT INTO article (sender_id, title, content, created_at, updated_at)
+INSERT INTO article (author_id, title, content, created_at, updated_at)
 VALUES
     (7, 'Introduction to Cloud Computing', 'Cloud computing allows businesses to scale and save costs. It is a model that delivers computing services over the internet.', '2025-02-01', '2025-02-01'),
     (7, 'Understanding Blockchain Technology', 'Blockchain is a decentralized digital ledger technology. It enables secure transactions and is the backbone of cryptocurrencies.', '2025-02-02', '2025-02-02'),
@@ -107,7 +107,7 @@ VALUES
     (9, 'https://example.com/big-data-business', 'How Big Data impacts businesses', '2025-02-09'),
     (10, 'https://example.com/iot-smart-cities', 'The role of IoT in smart cities', '2025-02-10');
 
-INSERT INTO comment (article_id, customer_id, content, created_at)
+INSERT INTO comment (article_id, author_id, content, created_at)
 VALUES
     (1, 1, 'Great article! Very informative on cloud computing.', '2025-02-01'),
     (1, 2, 'Clear and concise explanation. Thanks for sharing!', '2025-02-01'),

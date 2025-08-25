@@ -41,4 +41,28 @@ class ArticleController extends Controller
         $this->articleService->delete($id);
         return response()->json(null, 204);
     }
+
+
+    public function getByAuthorId($authorId)
+    {
+        return $this->articleRepository->getByAuthorId($authorId);
+    }
+
+    public function getByTitleContaining($title){
+        return $this->articleRepository->getByTitleContaining($title);
+    }
+
+    public function getByContentContaining($content)
+    {
+        return $this->articleRepository->getByContentContaining($content);
+    }
+
+    public function getByKeywords($keywords)
+    {
+        return $this->articleRepository->getByKeywords($keywords);
+    }
+    public function getBy()
+    {
+
+    }
 }

@@ -12,7 +12,7 @@ class Customer extends Authenticatable
 
     protected $table = 'customer';
 
-    protected $primaryKey = 'customer_id';
+    protected $primaryKey = 'author_id';
 
     protected $fillable = [
         'name',
@@ -35,6 +35,6 @@ class Customer extends Authenticatable
 
     public function articles()
     {
-        return $this->hasMany(Article::class, 'sender_id', 'customer_id');
+        return $this->hasMany(Article::class, 'author_id', 'customer_id');
     }
 }
