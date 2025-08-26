@@ -27,8 +27,8 @@ Route::prefix('customer')->group(function () {
 });
 
 Route::prefix('keyword')->group(function () {
-    Route::get('', [CustomerController::class, 'index']);
-    Route::post('', [CustomerController::class, 'store']);
-    Route::get('/{id}', [CustomerController::class, 'show']);
-    Route::delete('/{id}', [CustomerController::class, 'destroy']);
+    Route::get('', [KeyWordController::class, 'index']);
+    Route::post('', [KeyWordController::class, 'store']);
+    Route::get('/{id}', [KeyWordController::class, 'show']);
+    Route::delete('/{id}', [KeyWordController::class, 'destroy']);
 });
