@@ -1,50 +1,50 @@
 CREATE TABLE customer (
-    customer_id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(255) NOT NULL,
-    study_area VARCHAR(255),
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP
+                          customer_id SERIAL PRIMARY KEY,
+                          name VARCHAR(255) NOT NULL,
+                          email VARCHAR(255) NOT NULL UNIQUE,
+                          password VARCHAR(255) NOT NULL,
+                          role VARCHAR(255) NOT NULL,
+                          study_area VARCHAR(255),
+                          created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                          updated_at TIMESTAMP
 );
 
 CREATE TABLE article (
-    author_id SERIAL PRIMARY KEY,
-    sender_id INT NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    content TEXT NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP,
-    FOREIGN KEY (sender_id) REFERENCES customer(customer_id) ON DELETE CASCADE
+                         article_id SERIAL PRIMARY KEY,
+                         author_id INT NOT NULL,
+                         title VARCHAR(255) NOT NULL,
+                         content TEXT NOT NULL,
+                         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                         updated_at TIMESTAMP,
+                         FOREIGN KEY (author_id) REFERENCES customer(customer_id) ON DELETE CASCADE
 );
 
 CREATE TABLE key_word (
-    key_word_id SERIAL PRIMARY KEY,
-    article_id INT NOT NULL,
-    content VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE
+                          key_word_id SERIAL PRIMARY KEY,
+                          article_id INT NOT NULL,
+                          content VARCHAR(255) NOT NULL,
+                          created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                          FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE
 );
 
 CREATE TABLE attachment (
-    attachment_id SERIAL PRIMARY KEY,
-    article_id INT NOT NULL,
-    link VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE
+                            attachment_id SERIAL PRIMARY KEY,
+                            article_id INT NOT NULL,
+                            link VARCHAR(255) NOT NULL,
+                            description VARCHAR(255) NOT NULL,
+                            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                            FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE
 );
 
 CREATE TABLE comment (
-    comment_id SERIAL PRIMARY KEY,
-    article_id INT NOT NULL,
-    author_id INT NOT NULL,
-    content VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP,
-    FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE,
-    FOREIGN KEY (author_id) REFERENCES customer(customer_id) ON DELETE CASCADE
+                         comment_id SERIAL PRIMARY KEY,
+                         article_id INT NOT NULL,
+                         author_id INT NOT NULL,
+                         content VARCHAR(255) NOT NULL,
+                         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                         updated_at TIMESTAMP,
+                         FOREIGN KEY (article_id) REFERENCES article(article_id) ON DELETE CASCADE,
+                         FOREIGN KEY (author_id) REFERENCES customer(customer_id) ON DELETE CASCADE
 );
 
 INSERT INTO customer (name, email, password, role, study_area, created_at, updated_at)
