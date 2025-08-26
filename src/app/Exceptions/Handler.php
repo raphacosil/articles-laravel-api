@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -11,6 +12,12 @@ class Handler extends ExceptionHandler
 {
     public function render($request, \Throwable $e)
     {
+        Log::error('API Exception', [
+            'message' => $e->getMessage(),
+            'type'    => get_class($e),
+            'url'     => $request->fullUrl(),
+            'input'   => $request->all()
+        ]);
         if ($e instanceof ModelNotFoundException) {
             return response()->json(['error' => 'Resource not found.'], 404);
         }
