@@ -7,7 +7,7 @@ use Illuminate\Routing\Controller;
 
 class CustomerController extends Controller
 {
-    protected $customerService;
+    protected CustomerService $customerService;
 
     public function __construct(CustomerService $customerService)
     {

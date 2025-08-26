@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Services\KeyWordService;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class KeyWordController extends Controller
 {
-    protected $keyWordService;
+    protected KeyWordService $keyWordService;
 
     public function __construct(KeyWordService $keyWordService)
     {

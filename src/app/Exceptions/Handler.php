@@ -10,7 +10,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
-
     public function report(\Throwable $e)
     {
         Log::error('API Error', [
@@ -39,6 +38,13 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Endpoint conflict'], 409);
         }
 
-        return response()->json(['error' => $e->getMessage()], $e->getCode());
+        return response()->json(
+            [
+                'error' => $e->getMessage(),
+                'line' => $e->getLine(),
+                'file' => $e->getFile(),
+                'trace' => $e->getTrace(),
+            ],
+            $e->getCode());
     }
 }

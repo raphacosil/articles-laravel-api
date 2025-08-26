@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\KeyWord;
+use App\Repositories\KeyWordRepository;
 
 class KeyWordService
 {

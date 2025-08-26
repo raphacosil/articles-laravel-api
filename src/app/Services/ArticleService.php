@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Article;
 use App\Repositories\ArticleRepository;
-use http\Exception\InvalidArgumentException;
 
 class ArticleService
 {

@@ -37,13 +37,13 @@ class CustomerService
         return $this->customerRepository->create($customer);
     }
 
-    public function update($id, Article $customer)
+    public function update($id, Customer $customer)
     {
-        return $this->articleRepository->update($id, $customer);
+        return $this->customerRepository->update($id, $customer);
     }
 
     public function delete($id)
     {
-        return $this->articleRepository->delete($id);
+        return $this->customerRepository->delete($id);
     }
 }

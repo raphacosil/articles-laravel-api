@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
 use App\Services\ArticleService;
+use Illuminate\Routing\Controller;
 
 class ArticleController extends Controller
 {
-    protected $articleService;
+    protected ArticleService $articleService;
 
     public function __construct(ArticleService $articleService)
     {
@@ -60,9 +60,5 @@ class ArticleController extends Controller
     public function getByKeywords($keywords)
     {
         return $this->articleRepository->getByKeywords($keywords);
-    }
-    public function getBy()
-    {
-
     }
 }
