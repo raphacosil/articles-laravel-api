@@ -10,14 +10,22 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
+
+    public function report(\Throwable $e)
+    {
+        Log::error('API Error', [
+            'exception' => get_class($e),
+            'message'   => $e->getMessage(),
+            'file'      => $e->getFile(),
+            'line'      => $e->getLine(),
+            'trace'     => app()->isLocal() ? $e->getTraceAsString() : null,
+        ]);
+
+        parent::report($e);
+    }
+
     public function render($request, \Throwable $e)
     {
-        Log::error('API Exception', [
-            'message' => $e->getMessage(),
-            'type'    => get_class($e),
-            'url'     => $request->fullUrl(),
-            'input'   => $request->all()
-        ]);
         if ($e instanceof ModelNotFoundException) {
             return response()->json(['error' => 'Resource not found.'], 404);
         }
