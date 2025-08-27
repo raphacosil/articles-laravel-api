@@ -45,20 +45,20 @@ class ArticleController extends Controller
 
     public function getByAuthorId($authorId)
     {
-        return $this->articleRepository->getByAuthorId($authorId);
+        return $this->articleService->getByAuthorId($authorId);
     }
 
     public function getByTitleContaining($title){
-        return $this->articleRepository->getByTitleContaining($title);
+        return $this->articleService->getByTitleContaining($title);
     }
 
     public function getByContentContaining($content)
     {
-        return $this->articleRepository->getByContentContaining($content);
+        return $this->articleService->getByContentContaining($content);
     }
 
     public function getByKeywords($keywords)
     {
-        return $this->articleRepository->getByKeywords($keywords);
+        return $this->articleService->getByKeywords($keywords);
     }
 }
